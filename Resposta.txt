@@ -1,0 +1,29 @@
+1) Qual fluxo os dados de um formulário em uma View deve percorrer até ser armazenado na fonte de dados em um projeto DDD? 
+
+A View envia os dados por meio de um formulário.
+As Controllers coletam os dados, os validam e os mapeiam para um comando ou modelo de domínio.
+A lógica de aplicação identifica os serviços necessários.
+A camada de Domain e as entidades estabelecem as normas de negócios.
+Os repositórios são usados para manter os dados na estrutura de dados.
+No final, os dados são armazenados no banco de dados.
+Este fluxo separa bem as responsabilidades, o que permite uma arquitetura flexível e robusta.
+
+
+2) Nossa aplicação necessita que um usuário esteja autenticado para poder navegar nas funcionalidades, em .net, como podemos desenvolver essa autenticação? 
+
+Configurar o middleware de autorização e autenticação no arquivo Program.cs ou Startup.cs.
+No método ConfigureServices, usar services.AddAuthentication() e services.AddAuthorization().
+Construir uma página de login onde os usuários possam inserir suas credenciais, como email e senha.
+Para validar as credenciais e criar um cookie de autenticação, pode-se utilizar o UserManager do ASP.NET Core.
+Nas rotas, temos que Autorizar os controladores e fazer ações que exigem um usuário autenticado.
+O sistema gera um cookie de autenticação após o login, que é usado para identificar o usuário em futuras requisições.
+Isso cria um processo de autenticação básica para uma aplicação.Net, limitando o acesso a áreas protegidas a usuários autenticados.
+
+
+3) Estamos enfrentando problemas de performance na pagina inicial de um portal que tem muitos acessos. Essa página exibe eventos separados em 6 sessões do html, filtrados, cada sessão, por uma regra de negócio. Trata-se de um projeto MVC, no qual são realizados 6 consultas via ORM para carregar a View que será processada no servidor e disponibilizada ao browser. O que podemos fazer para tentar mitigar esse problema de performance? 
+
+Podemos revisar as consultas para que sejam eficientes, evitando muitas queries e escolhendo apenas os campos necessários.
+Para diminuir a quantidade de dados retornados, podemos limitar a quantidade de dados (por exemplo, usando Select).
+Podemos também diminuir o número de consultas que não mudam com muita frequência. Pode ser realizado na memória (por exemplo, MemoryCache) ou distribuído (por exemplo, Redis).
+No código, usando async/await, as consultas assíncronas liberaram o thread enquanto aguarda as respostas do banco de dados.
+
